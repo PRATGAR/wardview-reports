@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Inbox for {{ doctor }}</title>
+</head>
+<body>
+  <h1>Shared reports</h1>
+  <ul>
+  {% for item in items %}
+    <li>
+      <a href="/share/view/{{ item.token }}">{{ item.title }}</a>
+      for {{ item.patient_name }} ({{ item.created_at }})
+      <blockquote>{{ item.note }}</blockquote>
+    </li>
+  {% else %}
+    <li>No reports have been shared with you.</li>
+  {% endfor %}
+  </ul>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ report.title }}</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    td, th { border: 1px solid #999; padding: 4px 8px; text-align: left; }
+    .flag-C { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>{{ report.title }}</h1>
+  {% for section in sections %}
+  <h2>{{ section.heading }}</h2>
+  <ul>{% for line in section.lines %}<li>{{ line }}</li>{% endfor %}</ul>
+  {% endfor %}
+  <table>
+    <thead><tr><th>Analyte</th><th>Value</th><th>Unit</th><th>Flag</th></tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr class="flag-{{ row.flag }}">
+        <td>{{ row.analyte }}</td><td>{{ row.value }}</td><td>{{ row.unit }}</td><td>{{ row.flag }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p>{{ report.footer }}</p>
+</body>
+</html>
